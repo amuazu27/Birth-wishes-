@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#09090D">
+<meta name="description" content="A cinematic birthday experience made for Mubaraka, my Little Princess.">
+<title>For Mubaraka — My Little Princess</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ══════════ AMBIENT BACKGROUND LAYERS ══════════ -->
+<div class="bg-glow" aria-hidden="true"></div>
+<canvas id="dust-canvas" aria-hidden="true"></canvas>
+
+<!-- ══════════ FIXED UI: MUSIC + PROGRESS ══════════ -->
+<div class="music-dock" role="region" aria-label="Music controls">
+  <button id="music-toggle" class="music-toggle" type="button" aria-pressed="false" aria-label="Toggle music">
+    <span class="music-icon" aria-hidden="true">
+      <span class="bar b1"></span><span class="bar b2"></span><span class="bar b3"></span>
+    </span>
+    <span class="music-label">Music</span>
+  </button>
+  <input id="music-volume" class="music-volume" type="range" min="0" max="100" value="70" aria-label="Music volume">
+</div>
+
+<nav class="scene-dots" aria-label="Scene progress">
+  <button type="button" data-goto="intro" aria-label="Invitation"></button>
+  <button type="button" data-goto="letter" aria-label="Love letter"></button>
+  <button type="button" data-goto="portraits" aria-label="Portraits"></button>
+  <button type="button" data-goto="moments" aria-label="Little moments"></button>
+  <button type="button" data-goto="birthday" aria-label="Birthday celebration"></button>
+  <button type="button" data-goto="gift" aria-label="Secret gift"></button>
+</nav>
+
+<main id="experience">
+
+
+  <section id="scene-intro" class="scene scene-full" data-scene="intro" aria-labelledby="intro-title">
+    <div class="spotlight" aria-hidden="true"></div>
+    <div class="intro-inner">
+      <svg class="crown" viewBox="0 0 64 40" aria-hidden="true">
+        <path d="M6 34 L10 12 L22 24 L32 6 L42 24 L54 12 L58 34 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="10" cy="10" r="2.4" fill="currentColor"/>
+        <circle cx="32" cy="4" r="2.6" fill="currentColor"/>
+        <circle cx="54" cy="10" r="2.4" fill="currentColor"/>
+      </svg>
+      <p class="intro-kicker reveal d1">October 13, 2026</p>
+      <h1 id="intro-title" class="intro-title reveal d2">Tonight, a little magic<br>is waiting for you…</h1>
+      <p class="intro-sub reveal d3">Someone very special deserves something extraordinary.</p>
+      <button id="enter-btn" class="btn-gold reveal d4" type="button">Enter Your Little World</button>
+      <button id="skip-intro" class="skip-link reveal d5" type="button">Skip intro →</button>
+    </div>
+    <p class="scroll-hint" aria-hidden="true"><span></span></p>
+  </section>
+
+  <section id="scene-letter" class="scene scene-full" data-scene="letter" aria-labelledby="letter-heading">
+    <div class="scene-head">
+      <p class="kicker">Scene Two</p>
+      <h2 id="letter-heading" class="scene-title">A letter, sealed with love</h2>
+    </div>
+
+    <div class="envelope-stage">
+      <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open the love letter" aria-expanded="false">
+        <div class="env-back"></div>
+        <div class="env-letter-peek">
+          <span>To my Little Princess…</span>
+        </div>
+        <div class="env-front"></div>
+        <div class="env-flap"></div>
+        <div class="wax-seal" aria-hidden="true">
+          <svg viewBox="0 0 40 40"><path d="M20 31 C12 25 6 20 6 14 C6 9 10 6 14 6 C17 6 19 8 20 10 C21 8 23 6 26 6 C30 6 34 9 34 14 C34 20 28 25 20 31 Z" fill="#431522" stroke="#D6B46A" stroke-width="1.4"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <article class="letter-card" id="letter-card" hidden>
+      <div class="letter-paper">
+        <p class="letter-salutation">To my Little Princess, Mubaraka…</p>
+        <p class="letter-body"><span id="typewriter"></span><span class="caret" aria-hidden="true"></span></p>
+        <div class="letter-actions">
+          <button id="read-all-btn" class="btn-ghost" type="button">Continue reading</button>
+          <button id="letter-next" class="btn-gold" type="button">Meet the Princess</button>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ══════════ SCENE 3 · MEET THE PRINCESS ══════════ -->
+  <section id="scene-portraits" class="scene" data-scene="portraits" aria-labelledby="portraits-heading">
+    <div class="scene-head">
+      <p class="kicker">Scene Three</p>
+      <h2 id="portraits-heading" class="scene-title">The girl who makes ordinary moments feel special.</h2>
+      <p class="scene-sub">Mubaraka · My Little Princess</p>
+    </div>
+
+    <div class="gallery" id="gallery">
+      <!-- Replace src with real photos. See README.md -->
+      <figure class="portrait-card" data-caption="Her smile, my favorite view.">
+        <img src="./assets/images/mubaraka-01.webp" alt="Portrait of Mubaraka" loading="lazy" width="600" height="800">
+        <figcaption>Her smile, my favorite view.</figcaption>
+      </figure>
+      <figure class="portrait-card" data-caption="Elegance, naturally.">
+        <img src="./assets/images/mubaraka-02.webp" alt="Portrait of Mubaraka" loading="lazy" width="600" height="800">
+        <figcaption>Elegance, naturally.</figcaption>
+      </figure>
+      <figure class="portrait-card" data-caption="Simply radiant.">
+        <img src="./assets/images/mubaraka-03.webp" alt="Portrait of Mubaraka" loading="lazy" width="600" height="800">
+        <figcaption>Simply radiant.</figcaption>
+      </figure>
+      <figure class="portrait-card" data-caption="The calm in my chaos.">
+        <img src="./assets/images/mubaraka-04.webp" alt="Portrait of Mubaraka" loading="lazy" width="600" height="800">
+        <figcaption>The calm in my chaos.</figcaption>
+      </figure>
+      <figure class="portrait-card" data-caption="Golden hour has nothing on her.">
+        <img src="./assets/images/mubaraka-05.webp" alt="Portrait of Mubaraka" loading="lazy" width="600" height="800">
+        <figcaption>Golden hour has nothing on her.</figcaption>
+      </figure>
+      <figure class="portrait-card" data-caption="My Little Princess.">
+        <img src="./assets/images/mubaraka-06.webp" alt="Portrait of Mubaraka" loading="lazy" width="600" height="800">
+        <figcaption>My Little Princess.</figcaption>
+      </figure>
+    </div>
+
+    <div class="scene-cta">
+      <button class="btn-gold" data-goto="moments" type="button">Continue to Our Little Moments</button>
+    </div>
+  </section>
+
+  <!-- ══════════ SCENE 4 · LITTLE MOMENTS, BIG FEELINGS ══════════ -->
+  <section id="scene-moments" class="scene scene-moments" data-scene="moments" aria-labelledby="moments-heading">
+    <div class="scene-head">
+      <p class="kicker">Scene Four</p>
+      <h2 id="moments-heading" class="scene-title">Little moments, big feelings</h2>
+    </div>
+
+    <!-- Chapter 1 · portrait + loving caption (editable in CONFIG.chapters) -->
+    <div class="chapter" data-chapter="1">
+      <div class="chapter-media parallax">
+        <img src="./assets/images/mubaraka-02.webp" alt="Portrait of Mubaraka" loading="lazy" width="600" height="800">
+      </div>
+      <div class="chapter-text">
+        <p class="chapter-no">Chapter One</p>
+        <h3>The way you light up a room</h3>
+        <p class="chapter-body">Some people walk into a room. You arrive — and somehow everything feels warmer. I never told you this enough, but the world is softer because you're in it.</p>
+      </div>
+    </div>
+
+    <!-- Chapter 2 · photo card + compliment -->
+    <div class="chapter chapter-alt" data-chapter="2">
+      <div class="chapter-media parallax">
+        <img src="./assets/images/mubaraka-05.webp" alt="Portrait of Mubaraka" loading="lazy" width="600" height="800">
+      </div>
+      <div class="chapter-text">
+        <p class="chapter-no">Chapter Two</p>
+        <h3>Quiet compliments I keep to myself</h3>
+        <p class="chapter-body">Your laugh. Your patience. The way you care about people without ever asking for credit. You are kind in the small, invisible ways — and that is the rarest kind of beautiful.</p>
+      </div>
+    </div>
+
+    <!-- Chapter 3 · editable memory placeholder -->
+    <div class="chapter" data-chapter="3">
+      <div class="chapter-media parallax">
+        <img src="./assets/images/mubaraka-03.webp" alt="Portrait of Mubaraka" loading="lazy" width="600" height="800">
+      </div>
+      <div class="chapter-text">
+        <p class="chapter-no">Chapter Three</p>
+        <h3>A moment I never want to forget</h3>
+        <p class="chapter-body" data-editable="memory">[ Edit this in js/script.js → CONFIG.memory — write about a real moment only you two share. ]</p>
+      </div>
+    </div>
+
+    <!-- Chapter 4 · qualities -->
+    <div class="chapter chapter-alt" data-chapter="4">
+      <div class="chapter-text chapter-wide">
+        <p class="chapter-no">Chapter Four</p>
+        <h3>What I love about you</h3>
+        <ul class="qualities" data-editable="qualities">
+          <li>Your gentle heart</li>
+          <li>Your stubborn hope</li>
+          <li>The way you say my name</li>
+          <li>Your laugh, especially when you try to hide it</li>
+          <li>How you make everyone feel seen</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Chapter 5 · birthday dedication -->
+    <div class="chapter chapter-dedication" data-chapter="5">
+      <div class="chapter-text chapter-wide">
+        <p class="chapter-no">Chapter Five</p>
+        <h3>A dedication, just for you</h3>
+        <p class="chapter-body">Mubaraka, this year I hope life is as generous to you as you are to everyone around you. You deserve mornings that feel easy, dreams that come true, and love that never makes you doubt yourself. Happy birthday, my Little Princess.</p>
+        <div class="scene-cta">
+          <button class="btn-gold btn-big" data-goto="birthday" type="button">Your Birthday Awaits</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ SCENE 5 · THE GRAND BIRTHDAY REVEAL ══════════ -->
+  <section id="scene-birthday" class="scene scene-full scene-birthday" data-scene="birthday" aria-labelledby="birthday-heading">
+    <div class="spotlight spotlight-birthday" aria-hidden="true"></div>
+
+    <div class="birthday-stage" id="birthday-stage">
+      <p class="kicker kicker-glow" id="birthday-kicker">The moment has arrived</p>
+      <h2 id="birthday-heading" class="birthday-title">Happy Birthday</h2>
+      <p class="birthday-name" id="birthday-name">Happy Birthday, My Little Princess!</p>
+      <p class="birthday-date" id="birthday-date">13 October 2026</p>
+
+      <!-- CSS cake -->
+      <div class="cake" id="cake" role="img" aria-label="A burgundy and gold birthday cake with lit candles">
+        <div class="candles" id="candles"><!-- candles injected by JS --></div>
+        <div class="tier tier-top"><span class="drip"></span></div>
+        <div class="tier tier-mid"><span class="drip"></span></div>
+        <div class="tier tier-base"><span class="drip"></span></div>
+        <div class="cake-plate"></div>
+      </div>
+
+      <div class="birthday-actions">
+        <button id="wish-btn" class="btn-gold btn-big" type="button">Make a Wish</button>
+      </div>
+
+      <div class="wish-reveal" id="wish-reveal" hidden>
+        <p class="wish-text">May every wish you whisper tonight find its way back to you this year. Your wish is safe with the stars now — and with me, always.</p>
+        <button id="to-gift-btn" class="btn-gold" type="button">One Last Surprise</button>
+      </div>
+    </div>
+
+    <canvas id="fx-canvas" aria-hidden="true"></canvas>
+  </section>
+
+  <!-- ══════════ SCENE 6 · THE SECRET GIFT ══════════ -->
+  <section id="scene-gift" class="scene scene-full" data-scene="gift" aria-labelledby="gift-heading">
+    <div class="scene-head">
+      <p class="kicker">Scene Six · The Secret Gift</p>
+      <h2 id="gift-heading" class="scene-title">Something small, from my heart</h2>
+      <p class="scene-sub">Tap the gift, Little Princess.</p>
+    </div>
+
+    <div class="gift-stage">
+      <div class="gift" id="gift" role="button" tabindex="0" aria-label="Open your secret gift" aria-expanded="false">
+        <div class="gift-glow" aria-hidden="true"></div>
+        <div class="gift-lid"><span class="gift-bow"></span></div>
+        <div class="gift-ribbon-v" aria-hidden="true"></div>
+        <div class="gift-box"></div>
+      </div>
+      <canvas id="gift-fx" aria-hidden="true"></canvas>
+    </div>
+
+    <div class="gift-message" id="gift-message" hidden>
+      <div class="letter-paper">
+        <p class="letter-salutation">My Little Princess,</p>
+        <p class="letter-body">I hope this new chapter of your life brings you peace, happiness, beautiful opportunities, and countless reasons to smile. May you always remember how special you are. Today is your day, and I hope it becomes a memory you will always treasure. Happy Birthday, Mubaraka. ❤️</p>
+        <p class="made-with">Made with love, especially for you.</p>
+        <button id="replay-btn" class="btn-ghost" type="button">Replay Your Surprise</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════════ LIGHTBOX ══════════ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <button class="lb-close" id="lb-close" type="button" aria-label="Close photo viewer">×</button>
+  <button class="lb-nav lb-prev" id="lb-prev" type="button" aria-label="Previous photo">‹</button>
+  <figure class="lb-figure">
+    <img id="lb-img" src="" alt="">
+    <figcaption id="lb-caption"></figcaption>
+  </figure>
+  <button class="lb-nav lb-next" id="lb-next" type="button" aria-label="Next photo">›</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
